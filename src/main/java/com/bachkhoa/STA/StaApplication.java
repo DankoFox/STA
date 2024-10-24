@@ -1,5 +1,7 @@
 package com.bachkhoa.STA;
 
+import com.bachkhoa.STA.tracker.TrackerServer;
+import com.bachkhoa.STA.tracker.TrackerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StaApplication.class, args);
-	}
+		TrackerService trackerService = new TrackerService();
+		TrackerServer trackerServer = new TrackerServer(trackerService);
 
+		// Start the tracker on port 8080
+		trackerServer.startTracker(8080);
+	}
 }
